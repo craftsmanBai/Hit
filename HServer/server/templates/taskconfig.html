@@ -1,0 +1,515 @@
+{% extends "base.html" %}
+{% block content %} 
+<div class="ui  segment"> 
+    <h4 class="ui horizontal header divider"> <i class="heartbeat icon"></i>Live </h4> 
+    <table class="ui celled table"> 
+     <thead> 
+      <tr> 
+       <th>Online</th> 
+       <th>IP</th> 
+       <th>System</th> 
+       <th>Add a Task</th> 
+      </tr> 
+     </thead> 
+     <tbody>
+      {% for host in live_dic.keys() %}
+      <tr class="positive"> 
+       <td>{{ host }}</td> 
+       <td id="ip">{{ live_dic[host]['CLIENT_IP']}}</td> 
+       <td>{{ live_dic[host]['CLIENT_SYSTEM']}}</td> 
+       <td class="collapsing"> 
+        <div class="ui  basic compact icon button" id="add"> 
+        <i class="plus icon"></i> 
+        </div></td> 
+      </tr> 
+      {% endfor %}
+     </tbody> 
+    </table> 
+
+<div class="ui standard modal" id="test"> 
+<i class="close icon"></i> 
+<div class="header">创建新的取证任务</div> 
+<div class="content"> 
+<form class="ui form" id="config-form" action="" method="POST">
+
+<!-- <h4 class="ui dividing header">创建者</h4>
+      <div class="two fields">
+        <div class="required field">
+        <div class="ui right icon input">
+        <input type="text" name="creator">
+        <i class="user icon"></i>
+        </div>
+        </div>
+        <div class="field"></div>
+
+      </div> -->
+<h4 class="ui dividing header">下发任务主机</h4>
+    <div class="field">
+          <div class="ui corner labeled input">
+            <input type="text" name="targetip" id="tip" readonly="readonly" value="">
+            <div class="ui corner label">
+              <i class="asterisk icon"></i>
+            </div>
+          </div>
+    </div>
+
+      
+<h4 class="ui dividing header">单次取证</h4>
+    <div class="field">
+      <div class="ui message">
+        <div class="header">
+          单次取证说明
+        </div>
+        <ul class="list">
+          <li>单次取证可指定时间执行取证任务,若当地时间超过设定时间,则任务执行.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <div class="ui right labeled left icon input">
+          <input name="ddate" type="date" value="2015-06-13"/>
+          <div class="ui tag label">日期</div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui right labeled left icon input">
+          <input name="dtime" type="time" value="00:00"/>
+          <div class="ui tag label">时间</div>
+        </div>
+      </div>
+    </div>
+
+<!--         <div class="four fields">
+        <div class="field">月
+        <select class="ui dropdown">月
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        </select>月
+        </div>
+
+        <div class="field">
+        <select class="ui dropdown">
+        <option>日</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        </select>
+        </div>
+
+        <div class="field">
+        <select class="ui dropdown">
+        <option>时</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>
+        </select>
+        </div>
+
+        <div class="field">  
+        <select class="ui dropdown">
+        <option>分</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>
+        </select>
+        </div> -->
+<h4 class="ui dividing header">固定周期取证</h4>
+        <div class="ui message">
+          <div class="header">
+            周期取证说明
+          </div>
+          <ul class="list">
+            <li>周期取证可设定一定周期执行取证任务,如每月x日/每周x/每天x时:x分.</li>
+          </ul>
+        </div>
+<div class="three fields">
+        <div class="field">
+        <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label>每月</label>
+        </div>
+        </div>
+        <div class="field">
+        <select class="ui dropdown">
+        <div class="default text">日</div>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>
+        </select>
+        </div>
+
+        <div class="field"></div>
+</div>
+
+
+<div class="three fields">
+      <div class="field">
+      <div class="ui toggle checkbox">
+      <input type="checkbox" name="public">
+      <label>每周</label>
+      </div>
+      </div>
+      <div class="field">
+      <select class="ui dropdown">
+      <div class="default text"></div>
+      <option value="1">周一</option>
+      <option value="2">周二</option>
+      <option value="3">周三</option>
+      <option value="4">周四</option>
+      <option value="5">周五</option>
+      <option value="6">周六</option>
+      <option value="7">周日</option>
+      </select>
+      </div>
+      <div class="field"></div>
+</div>
+
+<div class="three fields">
+    <div class="field">
+    <div class="ui toggle checkbox">
+    <input type="checkbox" name="public">
+    <label>每天</label>
+    </div>
+    </div>
+<div class="field">     
+      <select class="ui dropdown">
+      <div class="default text">时</div>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>      
+            </select>     
+            </div>
+<div class="field">  
+      <select class="ui dropdown">
+      <div class="default text">分</div>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="34">34</option>
+          <option value="35">35</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+          <option value="45">45</option>
+          <option value="46">46</option>
+          <option value="47">47</option>
+          <option value="48">48</option>
+          <option value="49">49</option>
+          <option value="50">50</option>
+          <option value="51">51</option>
+          <option value="52">52</option>
+          <option value="53">53</option>
+          <option value="54">54</option>
+          <option value="55">55</option>
+          <option value="56">56</option>
+          <option value="57">57</option>
+          <option value="58">58</option>
+          <option value="59">59</option>
+          </select> 
+      </div>
+    <div class="field"></div>
+</div>
+<h4 class="ui dividing header">注释</h4>
+
+<div class="field">
+  <div class="ui message">
+    <div class="header">
+      注释
+    </div>
+      填写其他备注信息
+  </div>
+<textarea name="comment"></textarea> 
+</div> 
+     
+<div class="actions"> 
+<div class="ui black button">cancle </div> 
+<div class="ui positive right labeled icon button" id="start-button">confirm <i class="checkmark icon"></i> 
+</div> 
+</div> 
+
+</form>
+</div>
+</div>
+</div>
+<script>
+$( document ).ready(function() {
+$('.ui.basic.compact.icon.button').click(function(){
+    $('#tip').val($(this).parents("tr").find("#ip").text());
+    $('#test').modal('show');
+  });
+$('.ui.checkbox')
+  .checkbox()
+  ;
+$('#start-button').on('click', function(){
+      $("#config-form").submit();
+});
+});
+</script>
+{% endblock %}

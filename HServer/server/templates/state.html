@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script>
+$(document).ready(function() {
+$('.menu .item')
+  .tab()
+;
+});
+</script>
+
+<div class="ui teal top attached pointing menu">
+  <div class="active item" data-tab="file-status">文件监控</div>
+  <div class="item" data-tab="host-info">主机信息</div>
+  <div class="item" data-tab="account-info">账户信息</div>
+  <div class="item" data-tab="ps-info">任务进程</div>
+  <div class="item" data-tab="disk-info">磁盘信息</div>
+  <div class="item" data-tab="network-info">网络状态</div>
+</div>
+<div class="ui active tab" data-tab="sys-status">
+  <div class="ui stacked segment">
+  <!-- <iframe src="http://172.16.13.166:8081/#/system-status" width="100%" height="420px" frameBorder="0"></iframe> -->
+  </div>
+</div>
+<div class="ui tab" data-tab="host-info">
+  <div class="ui stacked segment">
+  <!-- <iframe src="http://172.16.13.166:8081/#/basic-info" width="100%" height="420px" frameBorder="0"></iframe> -->
+  </div>
+</div>
+<div class="ui tab" data-tab="account-info">
+  <div class="ui stacked segment">
+  <!-- <iframe src="http://172.16.13.166:8081/#/account-info" width="100%" height="420px" frameBorder="0"></iframe> -->
+  </div>
+</div>
+<div class="ui tab" data-tab="ps-info">
+  <div class="ui stacked segment">
+  <!-- <iframe src="http://172.16.13.166:8081/#/ps-info" width="100%" height="420px" frameBorder="0"></iframe> -->
+  </div>
+</div>
+<div class="ui tab" data-tab="disk-info">
+  <div class="ui stacked segment">
+  <!-- <iframe src="http://172.16.13.166:8081/#/disk-info" width="100%" height="420px" frameBorder="0"></iframe> -->
+  </div>
+</div>
+<div class="ui tab" data-tab="network-info">
+  <div class="ui stacked segment">
+  <!-- <iframe src="http://172.16.13.166:8081/#/network-info" width="100%" height="420px" frameBorder="0"></iframe> -->
+  </div>
+</div>
+
+
+
+{% endblock %}

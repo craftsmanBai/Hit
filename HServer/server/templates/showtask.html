@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="ui segment"> 
+   <table class="ui compact celled definition table"> 
+    <thead class="full-width"> 
+     <tr>
+      <th>State</th> 
+      <th>TaskId</th> 
+      <th>Host</th> 
+      <th>StartTime</th> 
+      <th>FinishTime</th> 
+      <th>Note</th> 
+      <th></th>
+     </tr> 
+    </thead> 
+    <tbody> 
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>finished</td>
+      <td id="taskid">{{ record['taskid'] }}</td>
+      <td>{{ record['host'] }}</td>
+      <td>{{ record['startime'] }}</td>
+      <td>{{ record['finishtime'] }}</td>
+      <td>{{ record['note'] }}</td>
+      <td class="collapsing">
+      <a href='/result/{{ record['taskid'] }}'>
+       <div class="ui basic compact icon button"> 
+        <i class="zoom icon"></i> 
+       </div>
+      </a>
+      </td> 
+    </tr>
+    {% endfor %}
+    {% endif %}
+    </tbody> 
+   </table> 
+</div>
+<div class="ui small ok modal">
+  <div class="header">
+    Done!
+  </div>
+  <div class="actions">
+    <div class="ui positive right labeled icon button">
+      Yes
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+{% endblock %}

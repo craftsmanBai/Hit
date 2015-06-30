@@ -1,0 +1,31 @@
+<!-- linux_check_modules -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">模块检查</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>ModuleName</th>
+      <th>ModuleAddress</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['ModuleName'] }}</td>
+      <td>{{ record['ModuleAddress'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_check_modules").height=document.getElementById("myframe").offsetHeight+5;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

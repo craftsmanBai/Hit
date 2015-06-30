@@ -1,0 +1,43 @@
+<!-- linux_netstat -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">输入pid, 获取网络信息</h4>
+<div class="ui action input">
+  <input type="text">
+  <button class="ui green right labeled icon button">
+    <i class="find icon"></i>
+    Find
+  </button>
+</div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Proto</th>
+      <th>Source</th>
+      <th>Destiny</th>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['Proto'] }}</td>
+      <td>{{ record['Source'] }}</td>
+      <td>{{ record['Destiny'] }}</td>
+      <td>{{ record['State'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_netstat").height=document.getElementById("myframe").offsetHeight-40;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

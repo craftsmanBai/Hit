@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/semantic.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='components/icon.css') }}">
+  <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/semantic.js') }}"></script>
+</head>
+<body>
+<div class="ui segment" >
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>

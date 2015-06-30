@@ -1,0 +1,55 @@
+<!-- linux_find_file -->
+{% extends "framebase.html" %}
+{% block content %}
+<div  id="myframe">
+<form class="ui form fluid  segment">
+<div class="field">
+<h4 class="ui dividing header">输入文件名, 查找inode</h4>
+<div class="ui action input">
+  <input type="text">
+  <button class="ui green right labeled icon button">
+    <i class="find icon"></i>
+    Find
+  </button>
+</div>
+</div>
+
+<div class="field">
+<textarea></textarea>
+</div>
+</form>
+
+
+<h4 class="ui dividing header">dump文件在/hit/dump目录下</h4> 
+<form class="ui form fluid  segment">
+
+<div class="three fields">
+    <div class="required field">
+    <label>Inode</label>
+      <div class="ui input">
+        <input type="text" name="pid">
+      </div>
+    </div>
+    
+
+    <div class="required field">
+        <label>OutputFileName</label>
+            <div class="ui input">
+              <input type="text" name="outputfile">
+            </div>
+    </div>
+    
+    <div class="field"></div>
+    <div class="ui positive right floated button">
+        确定 
+    </div> 
+</div>
+</form>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_find_file").height=document.getElementById("myframe").offsetHeight-92;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

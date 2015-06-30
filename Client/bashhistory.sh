@@ -1,0 +1,1 @@
+gdb /bin/bash -q -command=1.sh | grep -o "#.*"

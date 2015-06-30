@@ -1,0 +1,34 @@
+<!-- linux_mount_cache -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">从kmem_cache获取的挂载信息</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>DevName</th>
+      <th>Path</th>
+      <th>FsType</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['DevName'] }}</td>
+      <td>{{ record['Path'] }}</td>
+      <td>{{ record['FsType'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_mount_cache").height=document.getElementById("myframe").offsetHeight-17;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!-- lsmod ，moddump-->
+{% extends "framebase.html" %}
+{% block content %}
+<div id="myframe">
+<form class="ui form segment">
+<h4 class="ui dividing header">已加载的内核模块</h4>
+<textarea></textarea>
+</form>
+<form class="ui form segment">
+<h4>输入要dump的模块名，模块保存在/hit/mods/目录下</h4>
+<div class="ui action input">
+  <input type="text" value="http://ww.short.url/c0opq">
+  <button class="ui green right labeled icon button">
+    <i class="save icon"></i>
+    模块名
+  </button>
+</div>
+</form>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_lsmod_moddump").height=document.getElementById("myframe").offsetHeight+10;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

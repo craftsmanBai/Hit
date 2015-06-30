@@ -1,0 +1,43 @@
+<!-- check_syscall -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">显示syscall</h4>
+<div class="ui toggle checkbox">
+    <input type="checkbox" name="public">
+    <label>只显示HOOKED</label>
+  </div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>TableName</th>
+      <th>Index</th>
+      <th>SystemCall</th>
+      <th>IndexAddress</th>
+      <th>HandlerAddress</th>
+      <th>Symbol</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['TableName'] }}</td>
+      <td>{{ record['Index'] }}</td>
+      <td>{{ record['SystemCall'] }}</td>
+      <td>{{ record['Index'] }}</td>
+      <td>{{ record['HandlerAddress'] }}</td>
+      <td>{{ record['Symbol'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_check_syscall").height=document.getElementById("myframe").offsetHeight-32;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

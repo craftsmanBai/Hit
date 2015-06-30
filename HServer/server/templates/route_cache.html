@@ -1,0 +1,33 @@
+<!-- linux_route_cache -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">路由表缓存</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Interface</th>
+      <th>Destination</th>
+      <th>Gateway</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['Interface'] }}</td>
+      <td>{{ record['Destination'] }}</td>
+      <td>{{ record['Gateway'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_route_cache").height=document.getElementById("myframe").offsetHeight-10;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

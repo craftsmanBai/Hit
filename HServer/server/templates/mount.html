@@ -1,0 +1,35 @@
+<!-- linux_mount -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">mount信息</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>DevName</th>
+      <th>Path</th>
+      <th>FsType</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['Device'] }}</td>
+      <td>{{ record['MountPoint'] }}</td>
+      <td>{{ record['FSType'] }}</td>
+      <td>{{ record['MountOptions'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_mount").height=document.getElementById("myframe").offsetHeight-20;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

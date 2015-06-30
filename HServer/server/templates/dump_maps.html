@@ -1,0 +1,78 @@
+<!-- dump_maps,查询后再显示表格 -->
+{% extends "framebase.html" %}
+{% block content %}
+
+
+<form class="ui form fluid segment" id="myframe>
+<div class="three fields">
+    <div class="required field">
+    <label>Pid</label>
+      <div class="ui input">
+        <input type="text" name="pid">
+      </div>
+    </div>
+    
+    <div class="required field">
+    <label>Offset</label>
+        <div class="ui  input">
+          <input type="text" name="offset">
+        </div>
+    </div>
+
+    <div class="required field">
+        <label>OutputFileName</label>
+            <div class="ui input">
+              <input type="text" name="outputfile">
+            </div>
+    </div>
+    
+    <div class="ui positive right floated button">
+        确定 
+    </div> 
+</div>
+</form>
+
+<div class="ui attached message">
+  <div class="header">
+    你可以在/Hit/dump/目录下找到你所dump的文件
+  </div>
+</div>
+
+<form class="ui form attached fluid segment">
+  <h4 class="ui dividing header">File命令</h4>
+      <div class="field">  
+      <textarea></textarea> 
+      </div> 
+  <h4 class="ui dividing header">Readelf命令</h4>
+  
+  <div class="ui selection dropdown">
+    <input name="gender" type="hidden">
+    <div class="default text">Select a value</div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+        <div class="item" data-value="0">Value</div>
+        <div class="item" data-value="1">Another Value</div>
+    </div>
+  </div>
+  
+  <div class="ui button">
+    Clear
+  </div>
+         
+  <h5>执行结果</h5>
+    <div class="field">  
+    <textarea></textarea> 
+  </div>     
+</form>
+
+<div class="ui bottom attached message">
+  <i class="icon help"></i>
+  readelf命令没有列出有用的信息？可以使用find_file恢复文件
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_dump_maps").height=document.getElementById("myframe").offsetHeight-105;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

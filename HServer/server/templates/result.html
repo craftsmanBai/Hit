@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+$(document).ready(function() {
+$('.menu .item')
+  .tab()
+;
+$('.dropdown')
+  .dropdown({
+    transition: 'drop'
+  });
+});
+</script>
+<div class="ui  segment"> 
+   <div class="ui  info message"> 
+    <i class="close icon"></i> 
+    <div class="header">
+      Task Details 
+    </div> 
+    <ul class="list"> 
+     <li>TaskId: {{ taskid }}</li> 
+     <li>Host: {{ host }}</li> 
+     <li>StartTime: {{ startime }}</li> 
+     <li>FinishTime: {{ finishtime }}</li> 
+     <li>Note: {{ note }}</li> 
+    </ul> 
+   </div> 
+  
+   <h4 class="ui horizontal header divider"> <i class="info icon"></i>Details </h4> 
+   <div class="ui menu"> 
+    <div class="menu"> 
+     <div class="ui pointing dropdown link item"> 
+      <span class="text">进程</span> 
+      <i class="dropdown icon"></i> 
+      <div class="menu"> 
+       <div class="item" data-tab="pslist">
+        pslist
+       </div> 
+       <div class="item" data-tab="psaux">
+        psaux
+       </div> 
+       <div class="item" data-tab="pstree">
+        pstree
+       </div> 
+       <div class="item" data-tab="pslist_cache">
+        pslist_cache
+       </div> 
+       <div class="item" data-tab="pidhashtable">
+        pidhashtable
+       </div>
+       <div class="item" data-tab="psxview">
+        psxview
+       </div>
+       <div class="item" data-tab="lsof">
+        lsof
+       </div>
+      </div> 
+     </div> 
+     <div class="ui pointing dropdown link item"> 
+      <span class="text">进程内存</span> 
+      <i class="dropdown icon"></i> 
+      <div class="menu"> 
+       <div class="item" data-tab="memmap">
+        memmap
+       </div> 
+       <div class="item" data-tab="proc_maps">
+        proc_maps
+       </div> 
+       <div class="item" data-tab="dump_map">
+        dump_map
+       </div> 
+       <div class="item" data-tab="bash">
+        bash
+       </div> 
+      </div> 
+     </div> 
+     <div class="ui pointing dropdown link item"> 
+      <span class="text">内核内存和对象</span> 
+      <i class="dropdown icon"></i> 
+      <div class="menu"> 
+       <div class="item" data-tab="lsmod_moddump">
+        lsmod moddump
+       </div> 
+       <div class="item" data-tab="tmpfs">
+        tmpfs
+       </div>  
+      </div> 
+     </div> 
+     <div class="ui pointing dropdown link item"> 
+      <span class="text">Rookit检测</span> 
+      <i class="dropdown icon"></i> 
+      <div class="menu">  
+       <div class="item" data-tab="check_afinfo">
+        check_afinfo
+       </div> 
+       <div class="item" data-tab="check_tty">
+        check_tty
+       </div> 
+       <div class="item" data-tab="check_notifier">
+        check_notifier
+       </div> 
+       <div class="item" data-tab="check_creds">
+        check_creds
+       </div> 
+       <div class="item" data-tab="check_fop">
+        check_fop
+       </div>
+       <div class="item" data-tab="check_idt">
+        check_idt
+       </div> 
+       <div class="item" data-tab="check_syscall">
+        check_syscall
+       </div>
+       <div class="item" data-tab="check_modules">
+        check_modules
+       </div>
+      </div> 
+     </div> 
+     <div class="ui pointing dropdown link item"> 
+      <span class="text">网络信息</span> 
+      <i class="dropdown icon"></i> 
+      <div class="menu"> 
+       <div class="item" data-tab="arp">
+        arp
+       </div> 
+       <div class="item" data-tab="ifconfig">
+        ifconfig
+       </div>
+       <div class="item" data-tab="route_cache">
+        route_cache
+       </div>
+       <div class="item" data-tab="netstat">
+        netstat
+       </div>
+       <div class="item" data-tab="pkt_queues">
+        pkt_queues
+       </div>
+       <div class="item" data-tab="sk_buff_cache">
+        sk_buff_cache
+       </div>
+      </div> 
+     </div> 
+     <div class="ui pointing dropdown link item"> 
+      <span class="text">系统信息</span> 
+      <i class="dropdown icon"></i> 
+      <div class="menu"> 
+       <div class="item" data-tab="cpuinfo">
+        cpuinfo
+       </div>  
+       <div class="item" data-tab="dmesg">
+        dmesg
+       </div> 
+       <div class="item" data-tab="iomem">
+        iomem
+       </div> 
+       <div class="item" data-tab="slabinfo">
+        slabinfo
+       </div> 
+       <div class="item" data-tab="mount">
+        mount
+       </div>
+       <div class="item" data-tab="mount_cache">
+        mount_cache
+       </div>
+       <div class="item" data-tab="dentry_cache">
+        dentry_cache
+       </div>
+       <div class="item" data-tab="find_file">
+        find_file
+       </div>
+       <div class="item" data-tab="vma_cache">
+        vma_cache
+       </div>
+      </div> 
+     </div> 
+     <div class="ui pointing dropdown link item"> 
+      <span class="text">其他信息</span> 
+      <i class="dropdown icon"></i> 
+      <div class="menu">
+      <div class="item" data-tab="volshell">
+        volshell
+       </div>
+       <div class="item" data-tab="yarascan">
+        yarascan
+       </div>
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div>
+  <div class="ui tab" data-tab="pslist"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/pslist/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_pslist"></iframe>
+    </div> 
+   </div>
+  <div class="ui tab" data-tab="psaux"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/psaux/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_psaux"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="pslist_cache"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="pidhashtable"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="psxview"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/psxview/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_psxview"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="lsof"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/lsof/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_lsof"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="memmap"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/memmap/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_memmap"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="proc_maps"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/proc_maps/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_proc_maps"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="dump_maps"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/dump_maps/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_dump_maps"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="bash"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/bash/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_bash"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="lsmod_moddump"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/lsmod_moddump/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_lsmod_moddump"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="tmpfs"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/tmpfs/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_tmpfs"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="check_afinfo"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/check_afinfo/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_check_afinfo"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="check_tty"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe_check_tty"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="keyboard_notifier"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="check_creds"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/check_creds/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_check_creds"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="check_fop"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/check_fop/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_check_fop"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="check_idt"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/check_idt/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_check_idt"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="check_syscall"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/check_syscall/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_check_syscall"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="check_modules"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/check_modules/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_check_modules"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="arp"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/arp/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_arp"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="ifconfig"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/ifconfig/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_ifconfig"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="route_cache"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/route_cache/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_route_cache"></iframe>
+    </div> 
+  </div>
+<div class="ui tab" data-tab="netstat"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/netstat/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_netstat"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="pkt_queues"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id=""></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="sk_buff_cache"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id=""></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="cpuinfo"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id=""></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="dmesg"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/dmesg/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_dmesg"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="iomem"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/iomem/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_iomem"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="slabinfo"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="mount"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/mount/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_mount"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="mount_cache"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/mount_cache/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_mount_cache"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="dentry_cache"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="find_file"> 
+    <div class="ui stacked segment"> 
+    <iframe src="/find_file/{{ taskid }}" frameborder="0" scrolling="yes" width='100%' id="iframe_find_file"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="vma_cache"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="volshell"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+  <div class="ui tab" data-tab="yarascan"> 
+    <div class="ui stacked segment"> 
+    <iframe src="" frameborder="0" scrolling="yes" width='100%' id="iframe"></iframe>
+    </div> 
+  </div>
+{% endblock %}

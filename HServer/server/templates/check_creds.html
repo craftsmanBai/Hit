@@ -1,0 +1,29 @@
+<!-- check_creds -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">检查creds</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>PIDs</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['Pids'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_check_creds").height=document.getElementById("myframe").offsetHeight+12;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

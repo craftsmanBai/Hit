@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>State</title>
+  <link rel="alternate icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/semantic.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='components/icon.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.fileupload.css') }}">
+  <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/semantic.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chartkick.js') }}"></script>
+  <script>
+  $(document).ready(function() {
+    $('.ui.sidebar').sidebar('attach events', '.launch.button');
+    $('#login-button').on('click', function(){
+      $("form").submit()
+    });
+
+    $('input').keyup(function(e){
+        event.preventDefault();
+        if (e.keyCode == 13) {
+          $("form").submit();  
+        }
+    });
+  });
+  </script>
+  <style type="text/css">
+  body{
+    background-image: url({{ url_for('static', filename='img/loginbk.png') }});
+  }
+  </style>
+</head>
+
+<body id='home'>
+<div class="ui fixed inverted main menu"  href='/'>
+      <div class="title item">
+      <a class="ui logo icon image" style="margin-left: 10rem"href="/">
+      <img src="{{ url_for('static', filename='img/logomin.ico') }}">
+    </a>
+        <b>Hit!</b>
+        <b>Remote Memory Forensic Tools Based on Linux </b> 
+      </div>
+</div>
+<div class="ui divider"></div>
+<br/>
+<br/>
+<br/>
+<div id='login'>
+<div class="ui relaxed center aligned fitted stackable grid">
+<div class="ui six wide left aligned column">
+<h2 class="ui center aligned header">
+  <h2 class="ui center aligned  icon header">
+      <a class="ui logo icon image" style="margin-left: 14rem">
+        <img src="{{ url_for('static', filename='img/logo.ico') }}">
+      </a>
+  Hit！
+  </h2>
+  <form class="ui small form segment" method="POST" >
+      <div class="field">
+      <label for="username">Username:</label>
+        <div class="ui right icon input">
+          <input type="text" name="username" >
+          <i class="user icon"></i>
+        </div>
+      </div>
+      <div class="field">
+      <label for="password">Password:</label>
+        <div class="ui right icon input">
+          <input type="password" name="password" >
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <div class="ui green  submit button" type="submit" id="login-button">登录</div>
+      {{ form.csrf_token }}
+  </form>
+</div>
+</div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

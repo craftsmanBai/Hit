@@ -1,0 +1,27 @@
+<!-- tmpfs-->
+{% extends "framebase.html" %}
+{% block content %}
+<div id="myframe">
+<form class="ui form segment" >
+<h4 class="ui dividing header">临时文件系统列表</h4>
+<textarea></textarea>
+</form>
+
+<form class="ui form segment">
+<h4>输入要恢复的文件系统序号，默认保存在/hit/tmpfs/目录下</h4>
+<div class="ui action input">
+  <input type="text" value="http://ww.short.url/c0opq">
+  <button class="ui green right labeled icon button">
+    <i class="find icon"></i>
+    文件系统序号
+  </button>
+</div>
+</form>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_tmpfs").height=document.getElementById("myframe").offsetHeight+10;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

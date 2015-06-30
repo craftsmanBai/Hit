@@ -1,0 +1,64 @@
+<!-- check_file_operations -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">检查file_operations结构是否合法</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>SymbolName</th>
+      <th>Member</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['SymbolName'] }}</td>
+      <td>{{ record['Member'] }}</td>
+      <td>{{ record['Address'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+
+<h4>输入inode，查看i_fop的指针的成员</h4>
+<div class="ui action input">
+  <input type="text">
+  <button class="ui green right labeled icon button">
+    <i class="find icon"></i>
+    inode
+  </button>
+</div>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>SymbolName</th>
+      <th>Member</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>John</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>John</td>
+      <td>John</td>
+      <td>John</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_check_fop").height=document.getElementById("myframe").offsetHeight-65;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

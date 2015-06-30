@@ -1,0 +1,1 @@
+cmd_/home/nicko/Desktop/Client/lime/src/lime.o := ld -m elf_x86_64   -r -o /home/nicko/Desktop/Client/lime/src/lime.o /home/nicko/Desktop/Client/lime/src/tcp.o /home/nicko/Desktop/Client/lime/src/disk.o /home/nicko/Desktop/Client/lime/src/main.o 

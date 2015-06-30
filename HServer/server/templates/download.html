@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="ui compact celled definition table"> 
+   <thead class="full-width"> 
+    <tr> 
+     <th>Binary</th> 
+     <th>System</th> 
+     <th>Processor</th> 
+     <th>UpdateTime</th> 
+     <th>Download</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td class="collapsing"> <i class="folder icon"></i> </td> 
+     <td>Ubuntu</td> 
+     <td>x86_64</td> 
+     <td>2015-06-06</td> 
+     <td class="collapsing">
+      <a href="{{ url_for('static', filename='clientinstall/Ubuntux86_64.zip') }}">
+      <div class="ui basic compact icon button"> 
+       <i class="download icon"></i> 
+      </div> </td>
+      </a>
+    </tr> 
+    <tr> 
+     <td class="collapsing"> <i class="folder icon"></i> </td> 
+     <td>Ubuntu</td> 
+     <td>x86</td> 
+     <td>2015-06-06</td> 
+     <td class="collapsing"> 
+      <div class="ui basic compact icon button"> 
+       <i class="download icon"></i> 
+      </div> </td> 
+    </tr> 
+    <tr> 
+     <td class="collapsing"> <i class="folder icon"></i> </td> 
+     <td>CentOS</td> 
+     <td>x86</td> 
+     <td>2015-06-06</td> 
+     <td class="collapsing"> 
+      <div class="ui basic compact icon button"> 
+       <i class="download icon"></i> 
+      </div> </td> 
+    </tr> 
+   </tbody> 
+  </table> 
+{% endblock %}

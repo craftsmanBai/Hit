@@ -1,0 +1,40 @@
+<!-- memmap,查询后再显示表格 -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<div class="ui icon input">
+  <input type="text" placeholder="Search...">
+  <i class="search icon"></i>
+</div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Pid</th>
+      <th>Virtual</th>
+      <th>Physical</th>
+      <th>Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['Task'] }}</td>
+      <td>{{ record['Pid'] }}</td>
+      <td>{{ record['Virtual'] }}</td>
+      <td>{{ record['Physical'] }}</td>
+      <td>{{ record['Size'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_memmap").height=document.getElementById("myframe").offsetHeight-58;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

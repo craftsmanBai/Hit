@@ -1,0 +1,42 @@
+<!-- pslist -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<div class="ui icon input">
+  <input type="text" placeholder="Search...">
+  <i class="search icon"></i>
+</div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Pid</th>
+      <th>Uid</th>
+      <th>DTB</th>
+      <th>StartTime</th>
+      <th>Offset</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['Name'] }}</td>
+      <td>{{ record['Pid'] }}</td>
+      <td>{{ record['Uid'] }}</td>
+      <td>{{ record['DTB'] }}</td>
+      <td>{{ record['StartTime'] }}</td>
+      <td>{{ record['Offset'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_pslist").height=document.getElementById("myframe").offsetHeight;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

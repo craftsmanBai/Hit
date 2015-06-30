@@ -1,0 +1,35 @@
+<!-- linux_ifconfig -->
+{% extends "framebase.html" %}
+{% block content %}
+<div class="ui segment" id="myframe">
+<h4 class="ui dividing header">ifconfig执行结果</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Interface</th>
+      <th>IPAddress</th>
+      <th>MACAddress</th>
+      <th>PromiscousMode</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if resdata %}
+    {% for record in resdata %}
+    <tr>
+      <td>{{ record['Interface'] }}</td>
+      <td>{{ record['IPAddress'] }}</td>
+      <td>{{ record['MacAddress'] }}</td>
+      <td>{{ record['PromiscousMode'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<script language="javascript">
+function reSize(){
+  parent.document.getElementById("iframe_ifconfig").height=document.getElementById("myframe").offsetHeight-32;
+} 
+window.onload=reSize;
+</script>
+{% endblock %}

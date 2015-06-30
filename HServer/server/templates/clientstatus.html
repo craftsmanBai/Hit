@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script>
+$(document).ready(function() {
+  $('.menu .item').tab();
+  $('.ui.basic.compact.icon.button').click(function(){
+    $('#sys-status').attr("src","http://"+$(this).parents("tr").find("#ip").text()+":8081/#/system-status");
+    $('#host-info').attr("src","http://"+$(this).parents("tr").find("#ip").text()+":8081/#/basic-info");
+    $('#account-info').attr("src","http://"+$(this).parents("tr").find("#ip").text()+":8081/#/account-info");
+    $('#ps-info').attr("src","http://"+$(this).parents("tr").find("#ip").text()+":8081/#/ps-info");
+    $('#disk-info').attr("src","http://"+$(this).parents("tr").find("#ip").text()+":8081/#/disk-info");
+    $('#network-info').attr("src","http://"+$(this).parents("tr").find("#ip").text()+":8081/#/network-info");
+    });
+});
+</script>
+
+
+ <div class="ui  segment"> 
+   <h4 class="ui horizontal header divider"> <i class="heartbeat icon"></i>Live </h4> 
+   <table class="ui  celled table"> 
+    <thead> 
+      <tr> 
+       <th>Online</th> 
+       <th>IP</th> 
+       <th>System</th> 
+       <th>Check</th> 
+      </tr> 
+     </thead> 
+    <tbody>
+      {% for host in live_dic.keys() %}
+      <tr class="positive"> 
+       <td>{{ host }}</td> 
+       <td id="ip">{{ live_dic[host]['CLIENT_IP']}}</td> 
+       <td>{{ live_dic[host]['CLIENT_SYSTEM']}}</td> 
+       <td class="collapsing"> 
+        <div class="ui  basic compact icon button" id="add"> 
+        <i class="zoom icon"></i> 
+        </div></td> 
+      </tr> 
+      {% endfor %}
+     </tbody> 
+   </table> 
+    </div>
+   <h4 class="ui horizontal header divider"> <i class="info icon"></i>Details </h4> 
+   <div class="ui top attached pointing menu"> 
+    <div class="active item" data-tab="sys-status">
+     主机状态
+    </div>
+    <div class="item" data-tab="host-info">
+     主机信息
+    </div> 
+    <div class="item" data-tab="account-info">
+     账户信息
+    </div> 
+    <div class="item" data-tab="ps-info">
+     任务进程
+    </div> 
+    <div class="item" data-tab="disk-info">
+     磁盘信息
+    </div> 
+    <div class="item" data-tab="network-info">
+     网络状态
+    </div> 
+   </div> 
+   <div class="ui active tab" data-tab="sys-status"> 
+    <div class="ui stacked segment"> 
+     <iframe id="sys-status" src="" width="100%" height="420px" frameborder="0"></iframe> 
+    </div> 
+   </div> 
+   <div class="ui tab" data-tab="host-info"> 
+    <div class="ui stacked segment"> 
+     <iframe id="host-info" src="" width="100%" height="420px" frameborder="0"></iframe> 
+    </div> 
+   </div> 
+   <div class="ui tab" data-tab="account-info"> 
+    <div class="ui stacked segment"> 
+     <iframe id="account-info" src="" width="100%" height="420px" frameborder="0"></iframe> 
+    </div>
+   </div> 
+   <div class="ui tab" data-tab="ps-info"> 
+    <div class="ui stacked segment"> 
+     <iframe id="ps-info" src="" width="100%" height="420px" frameborder="0"></iframe> 
+    </div> 
+   </div> 
+   <div class="ui tab" data-tab="disk-info"> 
+    <div class="ui stacked segment"> 
+     <iframe id="disk-info" src="" width="100%" height="420px" frameborder="0"></iframe> 
+    </div> 
+   </div> 
+   <div class="ui tab" data-tab="network-info"> 
+    <div class="ui stacked segment"> 
+     <iframe id="network-info" src="" width="100%" height="420px" frameborder="0"></iframe> 
+    </div> 
+   </div> 
+{% endblock %}
