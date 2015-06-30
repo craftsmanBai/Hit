@@ -1,5 +1,7 @@
 # Hit
-Linux在线内存取证平台(Live Memory Forensic Tools Based on Linux for Rapid Response)
+Linux在线内存取证平台(Live Memory Forensic Tools Based on Linux for Rapid Response) 
+
+by Zing
 
 ![](img/1.png)
 
